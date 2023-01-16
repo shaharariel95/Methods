@@ -8,8 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Home</h1>
+    <h1>Hello {{ session.email }}</h1>
     <a href="{{ url_for('login') }}">login!</a>
-    <a href="{{ url_for('register') }}">Register!</a>
 </body>
 </html>
