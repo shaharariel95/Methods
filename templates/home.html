@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello {{ session.email }}</h1>
-    <a href="{{ url_for('login') }}">login!</a>
+    <h1>Hello {{ session.username }}</h1>
+    <a href="{{ url_for('logout') }}">logout!</a>
 </body>
 </html>
