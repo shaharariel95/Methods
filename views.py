@@ -1,5 +1,4 @@
 from flask import render_template, request, session, redirect
-import app
 
 
 def home():
@@ -13,22 +12,27 @@ def login_page():
     return render_template('login.html')
 
 
-def login():
+def login(app):
     # Get the user input
-    email = request.form['email']
-    password = request.form['password']
+    email = request.json['email']
+    password = request.json['password']
 
     # Create a cursor
     conn = app.mysql.connect()
     cursor = conn.cursor()
+    # cursor = app.mysql.get_db().cursor()
 
     # Get the user by username
     cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
-    columns = [col[0] for col in cursor.description]
-    user = dict(zip(columns, cursor.fetchone()))
-    print(user)
+    result = cursor.fetchone()
+    user = None
+    if result:
+        columns = [col[0] for col in cursor.description]
+        user = dict(zip(columns, result))
+    else:
+        return {"reason": 'User was not found'}
     # If the user exists and the password is correct
-    if user and app.bcrypt.check_password_hash(user['password'], password):
+    if user and app.bcrypt.check_password_hash(user['Password'], password):
         # Create a session for the user
         session['username'] = user['username']
         session['email'] = user['email']
@@ -38,7 +42,7 @@ def login():
     else:
         cursor.close()
         conn.close()
-        return 'Invalid username/password'
+        return {"reason": 'Invalid password'}
 
 
 def logout():
@@ -47,7 +51,8 @@ def logout():
     return redirect("/")
 
 
-def register():
+def register(app):
+    import app
     username = request.form['username']
     email = request.form['email']
     password = request.form['password']

@@ -21,14 +21,14 @@
             </ul>
         </div>
         <div ng-app ng-init="checked = false">
-            <form class="form-signin" action="/login" method="post" name="form">
+            <form class="form-signin" action="/login" method="post" id="log" name="form">
                 <label for="email">Full name</label>
                 <input required class="form-styling" type="text" name="email" placeholder="" />
                 <label for="password">Password</label>
                 <input required class="form-styling" type="text" name="password" placeholder="" />
-                <button class='btn-signup'> Login </button>
+                <button class='btn-signup' onclick="Login()"> Login </button>
             </form>
-            <form class="form-signup" action="/register" method="post" name="form">
+            <form class="form-signup" action="/register" method="post" id = "reg" name="form">
                 <label for="fullname">User name</label>
                 <input required class="form-styling" type="text" name="username" placeholder="" />
                 <label for="email">Email</label>
