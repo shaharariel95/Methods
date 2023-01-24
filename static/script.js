@@ -10,16 +10,16 @@ $(function() {
     });
 });
 
-
 $(document).ready(function() {
     $("#log").submit(function(event) {
         event.preventDefault();
     });
 });
 
-const Login = async () => {
-    const form = document.getElementById('log')
 
+
+const Login = async () => {
+    const form = document.getElementById('log');
 
     const data = {
         email: form.elements['email'].value,
@@ -49,3 +49,6 @@ const Login = async () => {
     }
 
 }
+
+
+

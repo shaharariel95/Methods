@@ -1,11 +1,12 @@
 from flask import render_template, request, session, redirect
+import EZshop_algo_api as ez
 
 
 def home():
     if not session.get("username"):
         # if not there in the session then redirect to the login page
         return redirect("/login")
-    return render_template('home.html')
+    return render_template('index.html')
 
 
 def login_page():
@@ -36,6 +37,7 @@ def login(app):
         # Create a session for the user
         session['username'] = user['username']
         session['email'] = user['email']
+        session['id'] = user['id']
         cursor.close()
         conn.close()
         return redirect('/')
@@ -52,7 +54,6 @@ def logout():
 
 
 def register(app):
-    import app
     username = request.form['username']
     email = request.form['email']
     password = request.form['password']
@@ -66,4 +67,10 @@ def register(app):
 
     cursor.close()
     conn.close()
+    return redirect('/')
+
+
+def get_num_of_lists():
+    x = ez.amount_of_lists(session['id'])
+    print(x)
     return redirect('/')
