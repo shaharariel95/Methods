@@ -24,3 +24,38 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+
+
+const addList = async () => {
+
+    const button = document.getElementById('addButton');
+    const success = document.getElementById('success')
+    const response = await fetch(`/newCart`, {
+        method: 'PUT',
+
+    });
+    console.log("38")
+    // const body = await response.json()
+    console.log(response)
+    if (response.status === 200){
+        console.log("hello world")
+        button.style.visibility = 'hidden';
+        success.style.visibility = 'visible';
+    }
+
+
+
+    // return body;
+}
+
+
+// $(document).ready(function (){
+//     $("nextCart").DataTable({
+//         ajax: '/predict',
+//         columns : [
+//             {data: 'product name'},
+//             {data: 'amount'}
+//         ]
+//     })
+// })

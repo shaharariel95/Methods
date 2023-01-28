@@ -11699,3 +11699,16 @@ body {
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
 }
+
+#oldCart{
+  width: 30%;
+}
+
+#newCart{
+  width: 60%;
+  padding-top: 0;
+}
+
+#predictButton{
+  /*float: left;*/
+}
