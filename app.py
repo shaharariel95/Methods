@@ -52,6 +52,8 @@ app.add_url_rule('/login', methods=['GET'], view_func=views.login_page)
 app.add_url_rule('/register', 'register', register_endpoint_handler_factory(app), methods=['POST'])
 app.add_url_rule('/logout', view_func=views.logout)
 app.add_url_rule('/list', methods=['GET'], view_func=views.get_num_of_lists)
+app.add_url_rule('/newCart',methods=['GET'], view_func=views.add_cart)
+app.add_url_rule('/newCart',methods=['PUT'], view_func=views.add_cart_to_list)
 app.add_url_rule('/', view_func=views.home)
 
 if __name__ == '__main__':

@@ -1,12 +1,20 @@
-from flask import render_template, request, session, redirect
-import EZshop_algo_api as ez
+from flask import render_template, request, session, redirect, Response
+import ezshop_algo_api as ez
+import json
 
 
 def home():
+    predictedCart = {}
+    oldCart = {}
+    amount = ez.amount_of_lists(session['id'])
     if not session.get("username"):
         # if not there in the session then redirect to the login page
         return redirect("/login")
-    return render_template('index.html')
+    if amount != 0:
+        predictedCart = ez.predict_list(session['id'], 10)
+        oldCart = ez.get_last_list(session['id'])
+    # print(oldCart)
+    return render_template('index.html', predictedCart=predictedCart, oldCart=oldCart, amount=amount)
 
 
 def login_page():
@@ -74,3 +82,22 @@ def get_num_of_lists():
     x = ez.amount_of_lists(session['id'])
     print(x)
     return redirect('/')
+
+
+def predict():
+    print("in predict! ", session['id'])
+    dict = ez.predict_list(session['id'], 10)
+    print(dict)
+    # return original_dict
+
+
+def add_cart():
+    return render_template('newCart.html')
+
+
+def add_cart_to_list():
+    predictedCart = ez.predict_list(session['id'], 10)
+    # predictedCart['time_from_last_buy'] = 10
+    ez.add_list(session['id'], predictedCart)
+    return Response(status=200)
+
