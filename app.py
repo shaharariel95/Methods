@@ -57,4 +57,4 @@ app.add_url_rule('/newCart',methods=['PUT'], view_func=views.add_cart_to_list)
 app.add_url_rule('/', view_func=views.home)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)

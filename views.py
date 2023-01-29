@@ -6,10 +6,11 @@ import json
 def home():
     predictedCart = {}
     oldCart = {}
-    amount = ez.amount_of_lists(session['id'])
+
     if not session.get("username"):
         # if not there in the session then redirect to the login page
         return redirect("/login")
+    amount = ez.amount_of_lists(session['id'])
     if amount != 0:
         predictedCart = ez.predict_list(session['id'], 10)
         oldCart = ez.get_last_list(session['id'])
