@@ -7,9 +7,30 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>EzShop</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+
+
+{#        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />#}
         <link href="/static/css/styles.css" rel="stylesheet" />
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <!-- datatable css
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css"
+          integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"/> -->
+        <!-- Jquery -->
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <!-- dataTable js
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+          integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"></script> -->
+        <!-- dataTableCheckBox
+        <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
+        <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script> -->
+        <!-- Fonts -->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -63,7 +84,7 @@
                         <ol class="breadcrumb mb-4">
 {#                            <li class="breadcrumb-item active">Dashboard</li>#}
                         </ol>
-                        <form action="" id="newlist">
+                       <!-- <form action="" id="newlist">
 
                             <input type="checkbox" value="'milk"><label for="milk">milk</label></br>
                             <input type="checkbox">
@@ -73,45 +94,66 @@
                             <input type="checkbox">
                             <input type="checkbox">
                             <input type="checkbox">
-                        </form>
-                <div class="row" id="predictButton">
-                           <div class="col-xl-3 col-md-6" id="success" style="visibility: hidden">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
+                        </form> -->
+                    <form action="/newCart" method="post">
+                        <div class="card-body" >
+                            <div class="card mb-4" >
+                                <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                New Cart
                             </div>
-                           <!-- <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <div class="col-xl-3 col-md-6" id="addButton">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body" >Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" onclick="nextCart()" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
+{#                                <table id="newCart">#}
+{#                                    <thead>#}
+{#                                    <tr>#}
+{#                                        <th>Name</th>#}
+{#                                        <th>Amount</th>#}
+{#                                    </tr>#}
+{#                                    </thead>#}
+{#                                    <tfoot>#}
+{#                                    <tr>#}
+{#                                        <th>Name</th>#}
+{#                                        <th>Amount</th>#}
+{#                                    </tr>#}
+{#                                    </tfoot>#}
+{#                                    <tbody id="tableBody">#}
+{#                                    {%for key, value in newCart.items() %}#}
+{#                                        {% if key != 'id' %}#}
+{#                                            {% if key != 'time_from_last_buy' %}#}
+{#                                                    <tr>#}
+{#                                                    <td>{{ key }}</td>#}
+{#                                                    <td><input type="number" name="{{ key }}" value="{{ value }}"></td>#}
+{#                                                    </tr>#}
+{#                                                {% endif %}#}
+{#                                        {% endif %}#}
+{#                                    {% endfor %}#}
+{#                                    </tbody>#}
+{#                                </table>#}
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>product name</th>
+                                        <th>amount</th>
+                                    </tr>
+                                </thead>
+                            <tbody id="dataBody">
+                                {%for key, value in newCart.items() %}
+                                    {% if key != 'id' %}
+                                        {% if key != 'time_from_last_buy' %}
+                                            {% if key != 'preservation products' %}
+                                            <tr>
+                                                <th scope="col"><label>{{ key }}</label></th>
+                                                <th scope="col"><input type="number" name="{{ key }}" value={{ value }} min="0" ></th>
+                                            </tr>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                            </table>
                             </div>
-                          <!--  <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div> -->
+                        <button type="submit">Submit</button>
                         </div>
+                    </form>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -131,10 +173,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/static/js/scripts.js"></script>
-        <script src="/static/js/datatables-simple-demo.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <!-- <script src="/static/assets/demo/chart-area-demo.js"></script>
-         <script src="/static/assets/demo/chart-bar-demo.js"></script> -->
-
+        <script src="/static/js/newCart.js"></script>
     </body>
 </html>

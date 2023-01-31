@@ -63,9 +63,8 @@
                         <ol class="breadcrumb mb-4">
 {#                            <li class="breadcrumb-item active">Dashboard</li>#}
                         </ol>
-                        <div class="row" id="predictButton">
-                        </div>
                         <div class="row">
+
                             <div class="card mb-4" id="oldCart">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -130,8 +129,25 @@
                                 </table>
                             </div>
                         </div>
-{#                        <div class="row" id="predictButton">#}
+                            <div class="col-xl-3 col-md-6" id="addCart">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body" >Add new Cart</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link"  href="{{url_for('add_cart')}}">add</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
                         {% if amount !=0 %}
+                            <div class="col-xl-3 col-md-6" id="edit">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body" >Edit predicted cart</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link"  href="{{ url_for('edit_cart') }}">add</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-xl-3 col-md-6" id="addButton">
                                 <div class="card bg-success text-white mb-4">
                                     <div class="card-body" >Add predicted list cart</div>
@@ -141,19 +157,17 @@
                                     </div>
                                 </div>
                             </div>
-                        <div class="col-xl-3 col-md-6" id="success" style="visibility: hidden">
+                            <div class="col-xl-3 col-md-6" id="success" style="visibility: hidden">
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">Successfully added the cart!</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     {% endif %}
-{#                    </div>#}
-                    </div>
 
+                        </div>
+                    </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

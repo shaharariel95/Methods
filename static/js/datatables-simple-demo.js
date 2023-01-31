@@ -1,9 +1,6 @@
 
-
-
 const dataTable = new simpleDatatables.DataTable("#nextCart")
 // const convertedData = simpleDatatables.convertJSON(   )
-
 
 
 window.addEventListener('DOMContentLoaded', event => {
