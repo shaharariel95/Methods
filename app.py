@@ -61,4 +61,4 @@ app.add_url_rule('/editCart', methods=['Get'], view_func=views.edit_cart)
 app.add_url_rule('/', view_func=views.home)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=False)
