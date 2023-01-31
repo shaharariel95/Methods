@@ -11705,10 +11705,11 @@ body {
 }
 
 #newCart{
-  width: 60%;
+  width: 70%;
   padding-top: 0;
 }
 
 #predictButton{
   /*float: left;*/
 }
+

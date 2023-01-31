@@ -1,6 +1,6 @@
-/.idea
-/venv
-*.env
-/*.csv
-/flask_session/*
-.env
+    .env
+    /venv
+    *.csv
+    /node_modules
+    /flask_session
+    /.idea

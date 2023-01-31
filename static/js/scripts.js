@@ -31,11 +31,10 @@ const addList = async () => {
 
     const button = document.getElementById('addButton');
     const success = document.getElementById('success')
-    const response = await fetch(`/newCart`, {
+    const response = await fetch(`/addCart`, {
         method: 'PUT',
 
     });
-    console.log("38")
     // const body = await response.json()
     console.log(response)
     if (response.status === 200){
@@ -43,10 +42,6 @@ const addList = async () => {
         button.style.visibility = 'hidden';
         success.style.visibility = 'visible';
     }
-
-
-
-    // return body;
 }
 
 
@@ -59,3 +54,4 @@ const addList = async () => {
 //         ]
 //     })
 // })
+

@@ -6,13 +6,18 @@ import json
 def home():
     predictedCart = {}
     oldCart = {}
-    amount = ez.amount_of_lists(session['id'])
+
     if not session.get("username"):
         # if not there in the session then redirect to the login page
         return redirect("/login")
+    amount = ez.amount_of_lists(session['id'])
     if amount != 0:
         predictedCart = ez.predict_list(session['id'], 10)
+        for keys in predictedCart:
+            predictedCart[keys] = int(predictedCart[keys])
         oldCart = ez.get_last_list(session['id'])
+        for keys in oldCart:
+            oldCart[keys] = int(oldCart[keys])
     # print(oldCart)
     return render_template('index.html', predictedCart=predictedCart, oldCart=oldCart, amount=amount)
 
@@ -84,15 +89,9 @@ def get_num_of_lists():
     return redirect('/')
 
 
-def predict():
-    print("in predict! ", session['id'])
-    dict = ez.predict_list(session['id'], 10)
-    print(dict)
-    # return original_dict
-
-
 def add_cart():
-    return render_template('newCart.html')
+    newCart = ez.get_empty_products_list()
+    return render_template('newCart.html', newCart=newCart)
 
 
 def add_cart_to_list():
@@ -101,3 +100,17 @@ def add_cart_to_list():
     ez.add_list(session['id'], predictedCart)
     return Response(status=200)
 
+
+def new_cart():
+    newCart = request.form
+    newCart = dict(newCart)
+    newCart = {k: int(v) for k, v in newCart.items()}
+    ez.add_list(session['id'], newCart)
+    return redirect('/')
+
+
+def edit_cart():
+    predicted = ez.predict_list(session['id'], 10)
+    for keys in predicted:
+        predicted[keys] = int(predicted[keys])
+    return render_template('editCart.html', predicted=predicted)

@@ -94,6 +94,8 @@ def add_list(given_id, given_dict):
     given_df.fillna(0, inplace=True)
     df.loc[len(df) + 1] = given_df
     # df.to_csv("df_with_time_from_last_buy.csv")
+    # save_csv()
+
 
 def predict_list(given_id, time_from_last_buy):
     """
@@ -112,6 +114,7 @@ def predict_list(given_id, time_from_last_buy):
         dict like {index -> {column -> value}}
 
     """
+    df.fillna(0, inplace=True)
     cur_df_trn_meta_data = df[df.time_from_last_buy == time_from_last_buy].iloc[:, [2, -1]]
 
     # filter out the first buying of every costumer  in the df_trn_meta_data (buying index 0)
@@ -175,3 +178,7 @@ def get_list_by_id(given_id, given_buying_index=0):
     if (given_buying_index != 0):
         return df[(df.id == given_id) & (df.Buying_index == given_buying_index)]
     return df[(df.id == given_id)]
+
+
+async def save_csv():
+    df.to_csv("df_with_time_from_last_buy.csv")
