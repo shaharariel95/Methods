@@ -34,7 +34,7 @@ app.config['MYSQL_DATABASE_DB'] = os.getenv('MYSQL_DATABASE_DB')
 app.config['MYSQL_DATABASE_HOST'] = os.getenv('MYSQL_DATABASE_HOST')
 mysql.init_app(app)
 app.mysql = mysql
-print('connected to db: ' + os.getenv('MYSQL_DATABASE_DB'))
+print('connected to db: ' , os.getenv('MYSQL_DATABASE_DB'))
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
